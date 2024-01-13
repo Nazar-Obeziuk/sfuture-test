@@ -4,6 +4,7 @@ import { SidebarService } from '../../shared/services/sidebar/sidebar.service';
 import { PlanService } from '../../shared/services/plan/plan.service';
 import { IPlan } from '../../shared/interfaces/plan/plan.interface';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { log } from 'console';
 
 @Component({
   selector: 'app-sidebar',
@@ -28,6 +29,11 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCurrentMonthEvents();
+      // if (localStorage.getItem('currentUser')) {
+      //   console.log('works');
+      // } else {
+      //   console.log('not works')
+      // }
   }
 
   getPersonalData(): void {
