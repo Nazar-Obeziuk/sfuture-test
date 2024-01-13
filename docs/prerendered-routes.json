@@ -1,0 +1,12 @@
+{
+  "routes": [
+    "/admin",
+    "/admin/category",
+    "/admin/coach",
+    "/admin/exercise",
+    "/exercises",
+    "/home",
+    "/plan",
+    "/profile"
+  ]
+}
