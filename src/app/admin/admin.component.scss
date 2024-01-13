@@ -1,0 +1,148 @@
+@import '../shared/styles/variables';
+@import '../shared/styles/base';
+@import '../shared/styles/mixins';
+
+.container {
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 30px;
+}
+.admin {
+
+		&__wrapper {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+
+			&_items {
+                display: flex;
+                justify-content: flex-start;
+                gap: 20px;
+			}
+
+			&_content {
+			}
+		}
+
+        &__exit {
+            width: 140px;
+            height: 42px;
+            background: $primary;
+            border: none;
+            border-radius: 6px;
+            font-size: 20px;
+            color: $white;
+            cursor: pointer;
+            outline: none;
+        }
+
+		&__item {
+
+			&_btn {
+                width: 140px;
+                height: 42px;
+                background: $primary;
+                border: none;
+                border-radius: 6px;
+                font-size: 20px;
+                color: $white;
+                cursor: pointer;
+                outline: none;
+			}
+		}
+}
+
+.admin__item_active {
+    border: none;
+    border-top: 5px solid $primary;
+    font-weight: 700;
+    color: $black;
+    outline: none;
+}
+
+.auth {
+
+    &__block {
+        width: 100%;
+        height: 100%;
+        @include fl-center-center;
+    }
+
+    &__form {
+        width: 50%;
+    }
+
+    &__content {
+
+        &_wrapper {
+            @include fl-start-center-col;
+			gap: 30px;
+        }
+    }
+
+    &__text {
+        font-size: 28px;
+        font-weight: 600;
+        color: $black;
+
+        &_wrapper {
+            width: 100%;
+            @include fl-center-center;
+        }
+    }
+
+    &__email {
+        width: 100%;
+
+        &_wrapper {
+            width: 100%;
+        }
+    }
+
+    &__password {
+        width: 100%;
+
+        &_wrapper {
+            width: 100%;
+        }
+    }
+
+    &__button {
+        width: 100%;
+        height: 52px;
+        background: $primary;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        color: $white;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: .4s;
+        
+        &:hover {
+            border-color: $primary;
+            color: $primary;
+            background: none;
+        }
+
+        &_wrapper {
+            width: 100%;
+        }
+    }
+}
+.modal {
+
+    &__input {
+        height: 52px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        color: $black;
+        padding: 0 20px;
+        font-size: 16px;
+        outline-color: $primary;
+    }
+}
+

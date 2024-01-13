@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="sidebar__wrapper">
+        <div routerLink="/home" class="sidebar__logo_block">
+            <img class="sidebar__logo_image" src="assets/images/sidebar-logo.svg" alt="">
+            <h2 class="sidebar__logo_text">SFuture</h2>
+        </div>
+
+        <nav [class.active]="isClickedBurger" class="sidebar__nav_block">
+            <ul class="sidebar__nav_list">
+                <li class="sidebar__list_item">
+                    <a (click)="hideMenu()" routerLink="/home" class="sidebar__list_link">
+                        <img src="assets/images/home-icon.svg" alt="" class="sidebar__link_icon">
+                        <p routerLinkActive="active__page" class="sidebar__link_text">Home</p>
+                    </a>
+                </li>
+                <li class="sidebar__list_item">
+                    <a (click)="hideMenu()" routerLink="/exercises" class="sidebar__list_link" >
+                        <img src="assets/images/exercise-icon.svg" alt="" class="sidebar__link_icon">
+                        <p routerLinkActive="active__page" class="sidebar__link_text">Exercises</p>
+                    </a>
+                </li>
+                <li class="sidebar__list_item">
+                    <a (click)="hideMenu()" routerLink="/plan" class="sidebar__list_link">
+                        <img src="assets/images/plan-icon.svg" alt="" class="sidebar__link_icon">
+                        <p routerLinkActive="active__page" class="sidebar__link_text">Plan</p>
+                    </a>
+                </li>
+                <li class="sidebar__list_item">
+                    <a (click)="hideMenu()" routerLink="/profile" routerLinkActive="active__page" class="sidebar__list_link">
+                        <img src="assets/images/profile-icon.svg" alt="" class="sidebar__link_icon">
+                        <p routerLinkActive="active__page" class="sidebar__link_text">Profile</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar__calendar_block">
+            <p class="sidebar__calendar_title">Current Month Events</p>
+            <div class="sidebar__calendar_items">
+                @if (currentMonthEvents.length >= 1) {
+                    @for (event of currentMonthEvents; track $index) {
+                        <div routerLink="/plan" class="event__block_item">
+                            <div class="event__item_title">
+                                <div class="item__title_circle"></div>
+                                <h3 class="item__title_name">{{ event.eventName }}</h3>
+                            </div>
+                            <div class="event__item_time">
+                                <p class="item__time_text">
+                                    {{ event.eventTimeFrom + ' - ' + event.eventTimeTo }}
+                                </p>
+                            </div>
+                        </div>
+                    }
+                } @else {
+                    <div class="event__block_empty">
+                        <p routerLink="/plan" class="block__empty_text">No events, click to add</p>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="sidebar__madeby_block">
+            <p class="sidebar__madeby_text">Made by Nazar Obeziuk</p>
+        </div>
+
+        <div (click)="showMenu()" [class.active]="isClickedBurger" class="sidebar__burger">
+            <span class="sidebar__burger_bar"></span>
+            <span class="sidebar__burger_bar"></span>
+            <span class="sidebar__burger_bar"></span>
+        </div>
+
+    </div>
+</div>

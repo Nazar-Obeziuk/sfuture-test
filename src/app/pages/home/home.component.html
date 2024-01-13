@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="wrapper__main">
+            @if (isUserSignedIn) {
+                <div class="wrapper__main_header">
+                    <h1 class="main__header_title">Welcome {{ userName }}!</h1>
+                    <p class="main__header_date">{{ today }}</p>
+                </div>
+            } @else {
+                <div class="wrapper__main_header">
+                    <h1 class="main__header_title">Welcome in SFuture!</h1>
+                    <p class="main__header_date">{{ today }}</p>
+                </div>
+            }
+            <div class="wrapper__main_blocks">
+                <h3 class="main__coach_title">Choose your coach</h3>
+                <app-coacher></app-coacher>
+            </div>
+            <div class="wrapper__main_shedule">
+                <h3 class="main__shedule_title">Training Analytics</h3>
+                <app-schedule></app-schedule>
+            </div>
+        </div>
+        <div class="wrapper__exercise_block">
+            <div class="exercise__block_inner">
+                <div class="exercise__block_header">
+                    <h2 class="exercise__header_title">Search exercise by category</h2>
+                </div>
+                <div class="exercise__header_scroll">
+                    <button class="exercise__scroll_button" type="button" (click)="onCategoryChange($event)">ALL</button>
+                    @for (userCategory of userAllCategories; track $index) {
+                        <button class="exercise__scroll_button" type="button" (click)="onCategoryChange($event)">{{ userCategory.name }}</button>
+                    }
+                </div>
+                <div class="exercise__block_main">
+                    @if (userExercises.length >= 1) {
+                        @for (exercise of userExercises; track $index) {
+                            <div class="exercise__main_item">
+                                <div class="exercise__item_info">
+                                    <div class="item__info_category">{{ exercise.category.name }}</div>
+                                    <div class="item__info_text">
+                                        <h3 class="info__text_name">
+                                            {{ exercise.name | slice:0:10 }}
+                                            @if (exercise.name.length >= 10) {
+                                                <span>...</span>
+                                            }
+                                        </h3>
+                                        <p class="info__text_duration">Duration - {{ exercise.duration }} min</p>
+                                    </div>
+                                    <div class="item__info_button">
+                                        <button (click)="addExerciseToUser(exercise)" class="info__button" type="button">Add Exercise</button>
+                                    </div>
+                                </div>
+                                <div class="exercise__item_banner">
+                                    <img [src]="exercise.imagePath" alt="" class="item__banner_image">
+                                </div>
+                            </div>
+                        }
+                    } @else {
+                        <h3 class="exercise__empty">Nothing found in this category</h3>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

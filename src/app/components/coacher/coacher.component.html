@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="wrapper__main">
+            <div class="wrapper__main_inner">
+                
+                @for (coach of userCoaches; track $index) {
+                    <div class="main__inner_coach">
+                        <div class="inner__coach_wrapper">
+                            <div class="inner__coach_info">
+                                <div class="coach__info_category">{{ coach.status }}</div>
+                                <p class="coach__info_name">{{ coach.name }}</p>
+                                <button [disabled]="isUserCoachAdded" (click)="addCoach(coach)" class="coach__info_button" type="button">Add Coach</button>
+                            </div>
+                            <div class="inner__coach_img">
+                                <img [src]="coach.imagePath" alt="" class="coach__img_item">
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="plan__wrapper">
+        <div class="plan__calendar_block">
+            <div class="calendar__main_block">
+                <div class="calendar__inner">
+                    <div class="calendar__inner_header">
+                        <div class="calendar__header_nav">
+                            <img (click)="prevMonth()" src="assets/images/previous-icon.svg" alt="" class="calendar__nav_previous">
+                            <p class="calendar__nav_title">{{ this.months[this.month] + " " + this.year }}</p>
+                            <img (click)="nextMonth()" src="assets/images/next-icon.svg" alt="" class="calendar__nav_next">
+                        </div>
+                    </div>
+                    <div class="calendar__inner_main">
+                        <div class="calendar__header_weekdays">
+                            <p class="calendar__weekdays_item">Sun</p>
+                            <p class="calendar__weekdays_item">Mon</p>
+                            <p class="calendar__weekdays_item">Tue</p>
+                            <p class="calendar__weekdays_item">Wed</p>
+                            <p class="calendar__weekdays_item">Thu</p>
+                            <p class="calendar__weekdays_item">Fri</p>
+                            <p class="calendar__weekdays_item">Sat</p>
+                        </div>
+                        <div class="calendar__inner_days">
+                            @for (day of days; track $index) {
+                                <div
+                                    (click)="addListener(day)"
+                                    class="calendar__main_day"
+                                    [class.calendar__prev_day]="day.name === 'prev'" 
+                                    [class.calendar__next_day]="day.name === 'next'"
+                                    [class.calendar__today]="day.name === 'today'"
+                                    [class.calendar__event_day]=""
+                                >
+                                    {{ day.day }}
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="calendar__inner_footer">
+                        <div class="calendar__footer_input">
+                            <input #inputElement (input)="getDateInput($event)" type="text" class="calendar__input_item" placeholder="mm/yyyy">
+                            <button (click)="goToInputDate(inputElement.value)" class="calendar__input_button">Go</button>
+                        </div>
+                        <button (click)="goToTodaysDate()" class="calendar__footer_button">Today</button>
+                    </div>
+                </div>
+            </div>
+            <div class="events__main_block">
+                <div class="event__header_block">
+                    <p class="event__header_weekname">{{ dayName }}</p>
+                    <p class="event__header_date">{{ eventDateName }}</p>
+                </div>
+                <div class="event__main_block">
+                    @if (eventsArray.length >= 1) {
+                        @for (eventItem of eventsArray; track $index) {
+                            <div (click)="deleteEvent(eventItem)" class="event__block_item">
+                                <div class="event__item_title">
+                                    <div class="item__title_circle"></div>
+                                    <h3 class="item__title_name">{{ eventItem.eventName }}</h3>
+                                </div>
+                                <div class="event__item_time">
+                                    <p class="item__time_text">
+                                        {{ eventItem.eventTimeFrom + ' - ' + eventItem.eventTimeTo }}
+                                    </p>
+                                </div>
+                            </div>
+                        }
+                    } @else {
+                        <div class="event__block_empty">
+                            <h2 class="event__empty_text">No Events</h2>
+                        </div>
+                    }
+                </div>
+                <div class="event__footer_block">
+                    <div class="event__add_wrapper" [class.active]="isEventModalOpen">
+                        <div class="event__add_header">
+                            <p class="add__header_title">Add Event</p>
+                            <img (click)="toggleAddEventModal()" src="assets/images/close-icon.svg" alt="" class="add__header_close">
+                        </div>
+                        <div [formGroup]="eventForm" class="event__add_main">
+                            <div class="event__add_block">
+                                <input formControlName="eventName" type="text" class="add__block_input" placeholder="Event Name">
+                            </div>
+                            <div class="event__add_block">
+                                <input formControlName="eventTimeFrom" (input)="getDateFrom($event)" type="text" class="add__block_input" placeholder="Event Time From">
+                            </div>
+                            <div class="event__add_block">
+                                <input formControlName="eventTimeTo" (input)="getDateTo($event)" type="text" class="add__block_input" placeholder="Event Time To">
+                            </div>
+                        </div>
+                        <div class="event__add_footer">
+                            <button (click)="createEvent()" class="add__footer_button" type="button">Add Event</button>
+                        </div>
+                    </div>
+                    <div class="event__add_circle">
+                        <button (click)="toggleAddEventModal()" class="add__circle_button" type="button">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

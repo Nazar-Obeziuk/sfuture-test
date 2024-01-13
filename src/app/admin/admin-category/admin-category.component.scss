@@ -1,0 +1,139 @@
+@import '../../shared/styles/variables';
+@import '../../shared/styles/base';
+@import '../../shared/styles/mixins';
+
+.container {
+}
+.wrapper {
+
+    &__toggle {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__add {
+
+        &_category {
+            width: 120px;
+            height: 38px;
+            background: $lightblue;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: $black;
+            font-size: 16px;
+        }
+    }
+}
+.category {
+
+		&__form {
+
+			&_name {
+                width: 100%;
+                height: 56px;
+                border: 1px solid $lightgray;
+                border-radius: 10px;
+                background: none;
+                padding: 0 12px;
+                font-size: 16px;
+                color: $black;
+                margin-bottom: 20px;
+			    outline-color: $primary;
+			}
+
+			&_button {
+                width: 140px;
+                height: 42px;
+                background: $primary;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                color: $white;
+                font-size: 20px;
+			}
+		}
+
+		&__name {
+            margin-top: 20px;
+		}
+}
+.form {
+}
+.table {
+    width: 100%;
+    border-collapse: collapse;
+
+		&__wrapper {
+            width: 100%;
+		}
+
+		&__header {
+            width: 100%;
+            border-bottom: 2px solid $lightblue;
+		}
+
+		&__item {
+            padding: 20px 0;
+            text-align: left;
+		}
+
+		&__main {
+            border-bottom: 2px solid $lightgray;
+		}
+}
+.header {
+
+		&__sharp {
+		}
+
+		&__name {
+		}
+
+		&__way {
+		}
+
+		&__image {
+		}
+
+		&__actions {
+		}
+}
+.main {
+
+		&__sharp {
+		}
+
+		&__name {
+		}
+
+		&__actions {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;  
+		}
+}
+
+.actions {
+
+    &__edit {
+        font-weight: 700;
+        color: $primary;
+        font-size: 16px;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    &__delete {
+        font-weight: 700;
+        color: $primary;
+        font-size: 16px;
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+    }
+}

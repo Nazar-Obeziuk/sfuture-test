@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="wrapper__toggle">
+            <button (click)="toggleCoachFormAndTable()" class="wrapper__add_coach">Add coach</button>
+        </div>
+        @if (isFormOpen) {
+            <div class="coach__form">
+                <form [formGroup]="coachForm" class="form" (ngSubmit)="addCoach()">
+                    <div class="coach__form_block">
+                        <div class="form__block_header">
+                            <input formControlName="name" type="text" class="coach__form_name coach__input" id="name" placeholder="*Name">
+                            <input formControlName="status" type="text" class="coach__form_status coach__input" id="status" placeholder="*Status">
+                        </div>
+                        <div class="form__block_footer">
+                            <input formControlName="description" type="text" class="coach__form_desc coach__input" id="description" placeholder="*Description">
+                            @if (!isUploaded) {
+                                <input type="file" class="coach__form_image coach__input" id="formFile" (change)="uploadImage($event)">
+                            }
+                            @if (isUploaded) {
+                                <div class="form__coach_load">
+                                    <img class="coach__load_img" [src]="valueByControl('imagePath')" alt="">
+                                    <button type="button" class="coach__load_button" (click)="deleteImage()">Delete</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- <div class="coach__status">
+                    </div>
+                    <div class="coach__image">
+                    </div> -->
+                    <button [disabled]="coachForm.invalid" type="submit" class="coach__form_button">{{ editStatus ? 'Save' : 'Add' }}</button>
+                </form>
+            </div>
+        }
+        
+       @if (!isFormOpen) {
+           <div class="table__wrapper">
+               <table class="table">
+                   <tr class="table__header">
+                       <th class="header__sharp table__item">№</th>
+                       <th class="header__name table__item">Name</th>
+                       <th class="header__desc table__item">Description</th>
+                       <th class="header__status table__item">Status</th>
+                       <th class="header__image table__item">ImagePath</th>
+                       <th class="header__actions table__item">Actions</th>
+                   </tr>
+                   @for (coach of adminCoaches; track $index) {
+                       <tr class="table__main">
+                           <td class="main__sharp table__item">
+                               № {{ coach.id | slice:0:12 }}
+                           </td>
+                           <td class="main__name table__item">{{ coach.name }}</td>
+                           <td class="main__name table__item">{{ coach.description | slice:0:30 }}</td>
+                           <td class="main__status table__item">{{ coach.status }}</td>
+                           <td class="main__image table__item">
+                                <img [src]="coach.imagePath" class="main__coach_image" alt="">
+                           </td>
+                           <td class="main__actions table__item">
+                               <button (click)="editCoach(coach)" class="actions__edit actions__btn" type="button">Edit</button>
+                               <button (click)="deleteCoach(coach)" class="actions__delete actions__btn" type="button">Delete</button>
+                           </td>
+                       </tr>
+                   }
+               </table>
+           </div>
+       }
+    </div>
+</div>

@@ -1,0 +1,211 @@
+@import '../../shared/styles/variables';
+@import '../../shared/styles/mixins';
+
+.container {
+    width: 590px;
+    height: 340px;
+}
+
+.block {
+    width: 100%;
+    height: 100%;
+    border: 1px solid $lightgray;
+    border-radius: 10px;
+
+    &__wrapper {
+        height: 100%;
+
+        &_bottom {
+            height: 248px;
+            position: relative;
+        }
+
+        &_top {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    &__bottom {
+
+        &_main {
+            width: 100%;
+            @include fl-center-sb-col;
+        }
+    }
+
+    &__top {
+
+        &_header {
+            padding: 30px;
+            width: 100%;
+            @include fl-center-sb;
+        }
+
+        &_schedule {
+            padding: 0 30px;
+            width: 586px;
+            @include fl-center-sb;
+        }
+
+        &_col {
+            width: 50px;
+            height: 230px;
+            @include fl-center-sb-col;
+        }
+    }
+}
+.bottom {
+
+    &__main {
+
+        &_line {
+            width: 100%;
+            height: 50px;
+            border-top: 1px dashed $lightgray;
+        }
+    }
+}
+.top {
+
+    &__header {
+
+        &_title {
+            user-select: none;
+        }
+
+        &_prev {
+            user-select: none;
+            cursor: pointer;
+        }
+
+        &_next {
+            user-select: none;
+            cursor: pointer;
+        }
+    }
+
+    &__col {
+
+        &_wrapper {
+            height: 200px;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;;
+        }
+
+        &_text {
+        }
+    }
+}
+.col {
+
+    &__wrapper {
+
+        &_item {
+            width: 100%;
+            background: $lightblue;
+            border-radius: 10px;
+        }
+    }
+}
+
+.today {
+    color: red;
+}
+
+@media (max-width: 440px) {
+
+    .container {
+        width: 100%;
+    }
+
+    .block {
+        width: 100%;
+        height: 320px;
+
+        &__wrapper {
+            width: 100%;
+            height: 100%;
+
+            &_bottom {
+                height: 248px;
+            }
+
+            &_top {
+                width: 100%;
+            }
+        }
+
+        &__top {
+
+            &_header {
+                padding: 20px;
+                width: 100%;
+            }
+    
+            &_schedule {
+                padding: 0 10px;
+                width: 100%;
+            }
+    
+            &_col {
+                width: 10%;
+                height: 230px;
+            }
+        }
+
+        &__bottom {
+
+            &_main {
+                width: 100%;
+            }
+        }
+    }
+
+    // .bottom {
+
+    //     &__main {
+    
+    //         &_line {
+    //             width: 100%;
+    //             height: 40px;
+    //             border-top: 1px dashed $lightgray;
+    //         }
+    //     }
+    // }
+
+    .top {
+
+        &__header {
+
+            &_title {
+                font-size: 14px;
+            }
+
+            &_next {
+                width: 10px;
+                height: 14px;
+
+            }
+
+            &_prev {
+                width: 10px;
+                height: 14px;
+
+            }
+        }
+    }
+
+    .block__bottom_main {
+        .bottom__main_line {
+          /* Загальні стилі для всіх елементів .bottom__main_line */
+      
+          &:last-child {
+            height: 40px;
+          }
+        }
+      }
+
+}

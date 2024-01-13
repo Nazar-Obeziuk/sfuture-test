@@ -1,0 +1,45 @@
+@if (exercise) {
+    <div class="container">
+        <div class="wrapper">
+            <div class="info__block">
+                <div routerLink="/exercises" class="info__block_header">
+                    <img src="assets/images/back-icon.svg" alt="" class="info__header_icon">
+                    <p class="info__header_text">Back to Exercises</p>
+                </div>
+                <div class="info__block_main">
+                    <div class="info__main_wrapper">
+                        <div class="info__main_text">
+                            <div class="info__text_category">
+                                <p class="info__category_text">{{ exercise.category.name }}</p>
+                            </div>
+                            <h2 class="info__text_name">{{ exercise.name }}</h2>
+                            <div class="info__text_table">
+                                <p class="info__table_duration">Duration - {{ exercise.duration }} min</p>
+                                <p class="info__table_count">Count - {{ exercise.count }}</p>
+                            </div>
+                            <p class="info__text_paragraph">
+                                {{ exercise.description }}
+                            </p>
+                            <div class="info__text_timer">
+                                <div class="info__timer_block">
+                                    <h2 class="info__timer_item">{{ displayTime }}</h2>
+                                </div>
+                                <div class="info__timer_button">
+                                    <button (click)="startTimer()" class="info__button_item" type="button">Start</button>
+                                    <button (click)="resetTimer()" class="info__button_item button__reset" type="button">Reset</button>
+                                    <button (click)="stopTimer()" class="info__button_item button__stop" type="button">Stop</button>
+                                </div>
+                            </div>
+                            <div class="info__text_complete">
+                                <button (click)="completeExercise(exercise)" class="info__complete_button" type="button">Complete</button>
+                            </div>
+                        </div>
+                        <div class="info__main_banner">
+                            <img class="info__banner_image" [src]="exercise.gifImagePath" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

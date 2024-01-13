@@ -1,0 +1,195 @@
+@import '../../../shared/styles/variables';
+@import '../../../shared/styles/mixins';
+
+.container {
+}
+.wrapper {
+}
+.info {
+    
+    &__block {
+            width: 100%;
+            height: 680px;
+
+            &_header {
+                height: 15%;
+                padding: 30px;
+                @include fl-center;
+                gap: 8px;
+                cursor: pointer;
+			}
+
+			&_main {
+                width: 100%;
+                height: 85%;
+                background: $lightgray;
+                border-radius: 0 0 10px 0;
+			}
+		}
+        
+		&__header {
+            
+            &_icon {
+            }
+            
+			&_text {
+                font-size: 18px;
+                margin-top: 2px;
+                color: $primary;
+			}
+		}
+        
+		&__main {
+            
+            &_wrapper {
+                height: 100%;
+                padding: 30px;
+                @include fl-sb;
+			}
+
+			&_text {
+                height: 100%;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+			}
+
+			&_banner {
+                width: 50%;
+                height: 100%;
+                // background: red;
+			}
+		}
+
+		&__text {
+
+			&_category {
+                width: 80px;
+                height: 30px;
+                background: $lightblue;
+                border-radius: 4px;
+                @include fl-center-center;
+                font-size: 11px;
+                font-weight: 600;
+                color: $primary;
+			}
+
+			&_name {
+                font-size: 30px;
+                color: $black;
+                font-weight: 700;
+			}
+
+			&_table {
+                width: 200px;
+                height: 60px;
+                background: $white;
+                border-radius: 10px;
+                @include fl-start-sb-col;
+                padding: 10px;
+			}
+
+			&_timer {
+                width: 100%;
+                height: 120px;
+                background: $white;
+                border-radius: 10px;
+                @include fl-center-sb-col;
+                padding: 20px 0;
+			}
+
+            &_paragraph {
+                color: $text-gray;
+                line-height: 24px;
+                width: 400px;
+            }
+
+            &_complete {
+
+            }
+		}
+        
+		&__category {
+            
+            &_text {
+                font-size: 16px;
+                text-transform: uppercase;
+			}
+		}
+
+		&__table {
+
+			&_duration {
+                color: $primary;
+			}
+
+			&_count {
+                color: $primary;
+			}
+		}
+
+		&__timer {
+
+			&_block {
+                width: 100%;
+                text-align: center;
+			}
+
+			&_item {
+                font-size: 36px;
+                color: $black;
+			}
+
+			&_button {
+                @include fl-center;
+                gap: 20px;
+                margin-top: 10px;
+			}
+		}
+
+		&__button {
+
+			&_item {
+                width: 80px;
+                height: 32px;
+                background: $primary;
+                border: none;
+                border-radius: 6px;
+                color: $white;
+                font-size: 14px;
+                cursor: pointer;
+			}
+		}
+
+		&__banner {
+
+			&_image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+			}
+		}
+
+        &__complete {
+
+            &_button {
+                width: 140px;
+                height: 46px;
+                background: $green;
+                border-radius: 6px;
+                border: none;
+                color: $white;
+                font-size: 18px;
+                cursor: pointer;
+                margin-top: 40px;
+            }
+        }
+}
+
+.button__reset {
+    background: orange;
+}
+
+.button__stop {
+    background: red;
+}

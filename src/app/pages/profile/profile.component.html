@@ -1,0 +1,194 @@
+<div class="container">
+    <div class="wrapper">
+
+        <!-- registration block -->
+        @if (!isLoginUser) {
+            <div class="auth__wrapper">
+                <div class="auth__inner">
+                    @if (!isSignedIn) {
+                        <div class="auth__block">
+                            <form [formGroup]="authForm" class="auth__form">
+                                <div class="auth__content_wrapper">
+                                    <div class="auth__text_wrapper">
+                                        <h2 class="auth__text">Sign in to SFuture</h2>
+                                    </div>
+                                    <div class="auth__email_wrapper">
+                                        <input formControlName="email" name="email" type="email" class="auth__email modal__input"
+                                            placeholder="Email address">
+                                    </div>
+                                    <div class="auth__password_wrapper">
+                                        <input formControlName="password" name="password" type="password"
+                                            class="auth__password modal__input" placeholder="Password">
+                                    </div>
+                                    <div class="auth__button_wrapper">
+                                        <button (click)="signInUser()" class="auth__button" type="submit">Sign in</button>
+                                    </div>
+                                    <div class="auth__footer_wrapper">
+                                        <p (click)="toggleRegistrationModal()" class="auth__footer_signup">
+                                            Don't have an account ? Sign up
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    } @else {
+                        <div class="signup__block">
+                            <form [formGroup]="authForm" class="signup__form">
+                                <div class="signup__content_wrapper">
+                                    <div class="signup__text_wrapper">
+                                        <h2 class="signup__text">Sign Up</h2>
+                                    </div>
+                                    <div class="signup__fullname_wrapper">
+                                        <input formControlName="firstName" name="firstName" type="text"
+                                            class="signup__firstname modal__input" placeholder="First name">
+                                        <input formControlName="lastName" name="lastName" type="text"
+                                            class="signup__lastname modal__input" placeholder="Last name">
+                                    </div>
+                                    <div class="signup__body_wrapper">
+                                        <input formControlName="height" name="height" type="number"
+                                            class="signup__height modal__input" placeholder="Height (cm)">
+                                        <input formControlName="weight" name="weight" type="number"
+                                            class="signup__weight modal__input" placeholder="Weight">
+                                        <input formControlName="age" name="age" type="number"
+                                            class="signup__age modal__input" placeholder="Age">
+                                    </div>
+                                    <div class="signup__email_wrapper">
+                                        <input formControlName="email" name="email" type="email" class="signup__email modal__input"
+                                            placeholder="Email address">
+                                    </div>
+                                    <div class="signup__password_wrapper">
+                                        <input (input)="checkConfirmPassword()" formControlName="password" name="password" type="password" class="signup__password modal__input" placeholder="Password">
+                                        <input (input)="checkConfirmPassword()" formControlName="confirmationPassword" name="confirmationPassword" type="password" class="signup__password modal__input" placeholder="Confirm password">
+                                    </div>
+                                    @if (checkVisibilityError('confirmationPassword', 'matchError')) {
+                                        <p class="signup__warning">The password does not match the previous one</p>
+                                    }
+                                    <div class="signup__button_wrapper">
+                                        <button [disabled]="!isCorrectPassword" (click)="signUpUser()" class="signup__button" type="submit">Sign Up</button>
+                                    </div>
+                                    <div class="signup__footer_wrapper">
+                                        <p (click)="toggleRegistrationModal()" class="signup__footer_text">
+                                            Already have an account? Sign In
+                                        </p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    }
+                </div>
+            </div>
+        } @else {
+            <!-- account block -->
+            <div class="account__wrapper">
+                <div class="account__block_coach">
+                    <div class="block__coach">
+                        <h3 class="block__coach_title">Your personal coach</h3>
+                        @if (userCoach) {
+                            <div class="block__coach_content">
+                                <div class="coach__content_image">
+                                    <img [src]="userCoach.imagePath" alt="" class="content__image_item">
+                                </div>
+                                <div class="coach__content_info">
+                                    <div class="content__info_category">{{ userCoach.status }}</div>
+                                    <div class="content__info_text">
+                                        <h3 class="info__text_name">{{ userCoach.name }}</h3>
+                                        <p class="info__text_paragraph">
+                                            {{ userCoach.description }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div (click)="deleteUserCoach(userCoach)" class="coach__item_delete">
+                                    <img src="assets/images/delete-icon.svg" alt="" class="item__delete_icon">
+                                </div>
+                            </div>
+                        } @else {
+                            <div class="block__coach_content">
+                                <div class="coach__content_wrapper">
+                                    <h3 routerLink="/home" class="coach__content_empty">No coach, click to add one</h3>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="block__schedule">
+                        <h3 class="shedule__title">Training Analytics</h3>
+                        <app-schedule></app-schedule>
+                    </div>
+                </div>
+                <div class="account__block_info">
+                    <div class="block__info_wrapper">
+                        <div class="info__wrapper_header">
+                            <p class="info__header_text">Profile</p>
+                            <div class="info__header_buttons">
+                                <button (click)="signOut()" class="info__header_signout">Sign out</button>
+                            </div>
+                        </div>
+                        <div class="info__wrapper_banner">
+                            <div class="info__banner_icon">
+                                <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png" alt="" class="info__banner_image">
+                            </div>
+                        </div>
+                        @if (isLoginUser) {
+                            <div class="info__wrapper_personal">
+                                <h2 class="info__personal_name">{{ currentUser?.firstName + ' ' + currentUser?.lastName }}</h2>
+                                <div class="info__personal_block">
+                                    <div class="personal__block_body">
+                                        <div class="block__body_height">
+                                            <p class="body__height_title">Height</p>
+                                            <span class="body__height_value">{{ currentUser.height }}</span>
+                                        </div>
+                                        <div class="block__body_weight">
+                                            <p class="body__weight_title">Weight</p>
+                                            <span class="body__weight_value">{{ currentUser.weight }}</span>
+                                        </div>
+                                        <div class="block__body_age">
+                                            <p class="body__age_title">Age</p>
+                                            <span class="body__age_value">{{ currentUser.age }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="personal__block_email">
+                                        <h4 class="personal__email_title">Email</h4>
+                                        <p class="personal__email_text">{{ currentUser?.email }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="info__wrapper_exercise">
+                            <h2 class="info__exercise_title">Today's Exercise</h2>
+                            <div class="info__exercise_content">
+                                @if (userExerciseList.length >= 1) {
+                                    @for (userExercise of userExerciseList; track $index) {
+                                        <div class="exercise__main_item">
+                                            <div class="exercise__item_info">
+                                                <div class="item__info_category">{{ userExercise.category.name }}</div>
+                                                <div class="item__info_text">
+                                                    <h3 class="info__text_name">
+                                                        {{ userExercise.name | slice:0:10 }}
+                                                        @if (userExercise.name.length >= 10) {
+                                                            <span>...</span>
+                                                        }
+                                                    </h3>
+                                                    <p class="info__text_duration">Duration - {{ userExercise.duration }} min</p>
+                                                </div>
+                                                <div class="item__info_button">
+                                                    <button [routerLink]="['/exercises', userExercise.id]" class="info__button" type="button">Start Training</button>
+                                                </div>
+                                            </div>
+                                            <div class="exercise__item_banner">
+                                                <img [routerLink]="['/exercises', userExercise.id]" [src]="userExercise.imagePath" alt="" class="item__banner_image">
+                                            </div>
+                                        </div>
+                                    }
+                                } @else {
+                                    <div class="profile__empty">
+                                        <p class="profile__exercise_empty">No exercise, please add some exercise to see them here</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div>
+</div>

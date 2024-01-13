@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="wrapper__toggle">
+            <button (click)="toggleCategoryFormAndTable()" class="wrapper__add_category">Add category</button>
+        </div>
+        @if (isFormOpen) {
+            <div class="category__form">
+                <form [formGroup]="categoryForm" class="form" (ngSubmit)="addCategory()">
+                    <div class="category__name">
+                        <input formControlName="name" type="text" class="category__form_name" id="name" placeholder="*Name">
+                    </div>
+                    <button [disabled]="categoryForm.invalid" type="submit" class="category__form_button">{{ editStatus ? 'Save' : 'Add' }}</button>
+                </form>
+            </div>
+        }
+        
+       @if (!isFormOpen) {
+           <div class="table__wrapper">
+               <table class="table">
+                   <tr class="table__header">
+                       <th class="header__sharp table__item">№</th>
+                       <th class="header__name table__item">Name</th>
+                       <th class="header__actions table__item">Actions</th>
+                   </tr>
+                   @for (category of adminCategories; track $index) {
+                       <tr class="table__main">
+                           <td class="main__sharp table__item">
+                               № {{ category.id }}
+                           </td>
+                           <td class="main__name table__item">{{ category.name }}</td>
+                           <td class="main__actions table__item">
+                               <button (click)="editCategory(category)" class="actions__edit actions__btn" type="button">Edit</button>
+                               <button (click)="deleteCategory(category)" class="actions__delete actions__btn" type="button">Delete</button>
+                           </td>
+                       </tr>
+                   }
+               </table>
+           </div>
+       }
+    </div>
+</div>

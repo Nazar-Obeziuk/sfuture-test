@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="exercise__header">
+            <div class="exercise__header_info">
+                <h2 class="exercise__header_title">{{ !isCompletedExercise ? 'Your Exercises In Progress' : 'Your Completed Exercises' }}</h2>
+                <p class="exercise__header_text">{{ !isCompletedExercise ? 'Choose one and start training' : 'Your completed exercises are displayed here' }}</p>
+            </div>
+            <div class="exercise__header_inner">
+                <button [class.active__inner]="!isCompletedExercise" (click)="toggleProcessExercises()" class="exercise__header_progress">In Process</button>
+                <button [class.active__inner]="isCompletedExercise" (click)="toggleCompletedExercises()" class="exercise__header_completed">Completed</button>
+            </div>
+        </div>
+        @if (!isCompletedExercise) {
+            <div class="exercise__main">
+                <div class="exercise__main_wrapper">
+                    <div class="exercise__main_inner">
+                        @for (userExercise of userExerciseList; track $index) {
+                            <div class="exercise__main_item">
+                                <div class="exercise__item_info">
+                                    <div class="item__info_category">{{ userExercise.category.name }}</div>
+                                    <div class="item__info_text">
+                                        <h3 class="info__text_name">
+                                            {{ userExercise.name | slice:0:10 }}
+                                            @if (userExercise.name.length >= 10) {
+                                                <span>...</span>
+                                            }
+                                        </h3>
+                                        <p class="info__text_duration">Duration - {{ userExercise.duration }} min</p>
+                                    </div>
+                                    <div class="item__info_button">
+                                        <button [routerLink]="['/exercises', userExercise.id]" class="info__button" type="button">Start Training</button>
+                                    </div>
+                                </div>
+                                <div class="exercise__item_banner">
+                                    <img [routerLink]="['/exercises', userExercise.id]" [src]="userExercise.imagePath" alt="" class="item__banner_image">
+                                </div>
+                                <div (click)="deleteUserExercise(userExercise)" class="exercise__item_delete">
+                                    <img src="assets/images/delete-icon.svg" alt="" class="item__delete_icon">
+                                </div>
+                            </div>
+                        } @empty {
+                            <div class="completed__empty_block">
+                                <h2 class="completed__empty_text">You have not added any exercises yet</h2>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (isCompletedExercise) {
+            <div class="exercise__main">
+                <div class="completed__exercise_wrapper">
+                    <div class="exercise__completed_inner">
+                        @for (completedExercise of userCompletedExerciseList; track $index) {
+                            <div class="exercise__main_item">
+                                <div class="exercise__item_info">
+                                    <div class="item__info_category">{{ completedExercise.category.name }}</div>
+                                    <div class="item__info_text">
+                                        <h3 class="info__text_name">
+                                            {{ completedExercise.name | slice:0:10 }}
+                                            @if (completedExercise.name.length >= 10) {
+                                                <span>...</span>
+                                            }
+                                        </h3>
+                                        <p class="info__text_duration">Duration - {{ completedExercise.duration }} min</p>
+                                    </div>
+                                    <div class="item__info_completed">
+                                        <img src="assets/images/completed-icon.svg" alt="" class="info__completed_icon">
+                                        <p class="info__completed_text">Completed</p>
+                                    </div>
+                                </div>
+                                <div class="exercise__item_banner">
+                                    <img [src]="completedExercise.imagePath" alt="" class="item__banner_image">
+                                </div>
+                            </div>
+                        } @empty {
+                            <div class="completed__empty_block">
+                                <h2 class="completed__empty_text">You have not done any exercises yet</h2>
+                            </div>
+                        }
+                    </div> 
+                </div>
+            </div>
+        }
+    </div>
+</div>

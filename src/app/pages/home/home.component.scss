@@ -1,0 +1,385 @@
+@import '../../shared/styles/variables';
+@import '../../shared/styles/mixins';
+
+.container {
+    width: 100%;
+    padding: 30px;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+
+		&__main {
+            @include fl-start-sb-col;
+
+			&_header {
+			}
+
+			&_blocks {
+                width: 100%;
+			}
+
+			&_shedule {
+			}
+		}
+
+		&__exercise {
+
+			&_block {
+                width: 360px;
+                height: 620px;
+                background: $lightgray;
+                border-radius: 10px;
+                padding: 20px;
+			}
+		}
+}
+.main {
+
+		&__header {
+
+			&_title {
+			}
+
+			&_date {
+			}
+		}
+
+		&__blocks {
+
+			&_one {
+			}
+
+			&_two {
+			}
+		}
+
+        &__shedule {
+
+            &_title {
+                margin-bottom: 10px;
+                color: $black;
+            }
+        }
+
+        &__coach {
+
+            &_title {
+                margin-bottom: 10px;
+                color: $black;
+            }
+        }
+}
+.exercise {
+
+		&__block {
+
+			&_inner {
+			}
+
+			&_header {
+                width: 100%;
+                @include fl-center-sb;
+			}
+
+			&_main {
+                height: 510px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 20px;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+			}
+		}
+
+        &__header {
+
+            &_title {
+                font-size: 18px;
+                font-weight: 600;
+                color: $black;
+            }
+    
+            &_category {
+                width: 80px;
+                height: 32px;
+                background: $lightblue;
+                border-radius: 20px;
+                border: none;
+                outline: none;
+                color: $primary;
+                font-weight: 500;
+            }
+
+            &_scroll {
+                width: 100%;
+                overflow-x: auto;
+                white-space: nowrap;
+                margin-top: 12px;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+        }
+    
+        &__main {
+    
+            &_item {
+                width: 320px;
+                height: 140px;
+                background: $white;
+                border-radius: 10px;
+                @include fl-center-sb;
+                cursor: pointer;
+            }
+        }
+    
+        &__item {
+    
+            &_info {
+                height: 100%;
+                @include fl-start-sb-col;
+                padding: 10px;
+            }
+    
+            &_banner {
+                width: 140px;
+                height: 140px;
+            }
+        }
+
+        &__scroll {
+
+            &_button {
+                width: 64px;
+                height: 24px;
+                background: $primary;
+                border: 1px solid transparent;
+                border-radius: 20px;
+                color: $white;
+                font-size: 12px;
+                margin-right: 6px;
+                transition: .4s;
+                outline: none;
+                cursor: pointer;
+
+                &:hover {
+                    background: none;
+                    border-color: $primary;
+                    color: $primary;
+                }
+            }
+        }
+
+        &__empty {
+            width: 100%;
+            height: 100%;
+            @include fl-center-center;
+            color: $primary;
+        }
+}
+
+.header {
+
+    &__category {
+
+        &_title {
+            color: $primary;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        &_image {
+
+        }
+    }
+}
+
+.item {
+
+    &__info {
+
+        &_category {
+            width: 50px;
+            height: 20px;
+            background: $lightblue;
+            border-radius: 4px;
+            @include fl-center-center;
+            font-size: 11px;
+            font-weight: 600;
+            color: $primary;
+        }
+
+        &_text {
+            @include fl-start-center-col;
+            gap: 4px;
+        }
+
+        &_button {
+        }
+    }
+
+    &__banner {
+
+        &_image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+    }
+}
+.info {
+
+    &__text {
+
+        &_name {
+            font-size: 20px;
+        }
+
+        &_duration {
+            font-size: 13px;
+            color: $text-gray;
+        }
+    }
+
+    &__button {
+        width: 100px;
+        height: 30px;
+        background: $primary;
+        border-radius: 4px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 14px;
+        color: $white;
+    }
+}
+
+// media
+
+@media (max-width: 440px) {
+    .container {
+        max-width: 100%;
+        padding: 0;
+        margin-top: 80px;
+    }
+
+    .wrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        &__main {
+            width: 100%;
+            padding: 0 20px;
+            @include fl-start-sb-col;
+
+            &_blocks {
+                margin-top: 20px;
+            }
+
+            &_shedule {
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+
+        &__exercise {
+
+            &_block {
+                width: 100%;
+            }
+        }
+    }
+
+    .main {
+
+        &__header {
+
+            &_title {
+                font-size: 26px;
+                color: $black;
+            }
+
+            &_date {
+                font-size: 14px;
+                color: $black;
+            }
+        }
+    }
+
+    .exercise {
+
+        &__main {
+
+            &_item {
+                width: 96%;
+            }
+        }
+
+        &__item {
+
+            &_info {
+                width: 50%;
+            }
+
+            &_banner {
+                width: 50%;
+            }
+        }
+    }
+
+}
+
+@media (max-width: 440px) {
+    .info {
+    
+        &__text {
+    
+            &_name {
+                font-size: 18px;
+            }
+    
+            &_duration {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .info {
+    
+        &__text {
+    
+            &_name {
+                font-size: 16px;
+            }
+    
+            &_duration {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .exercise {
+
+        &__scroll {
+
+            &_button {
+                width: 58px;
+                height: 20px;
+                font-size: 11px;
+            }
+        }
+    }
+}

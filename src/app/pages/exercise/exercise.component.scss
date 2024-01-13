@@ -1,0 +1,459 @@
+@import '../../shared/styles/variables';
+@import '../../shared/styles/mixins';
+
+.container {
+}
+.wrapper {
+}
+.exercise {
+    
+        &__header {
+            padding: 30px 30px 0 30px;
+            @include fl-center-sb;
+
+			&_title {
+                color: $black;
+			}
+
+			&_text {
+                margin-top: 10px;
+                color: $text-gray;
+			}
+
+            &_inner {
+                width: 228px;
+                height: 44px;
+                background: $lightgray;
+                border-radius: 20px;
+                @include fl-center-center;
+                padding: 4px;
+            }
+    
+            &_progress {
+                width: 50%;
+                height: 100%;
+                background: none;
+                border-radius: 20px;
+                border: none;
+                font-size: 14px;
+                color: $primary;
+                cursor: pointer;
+                outline: none;
+            }
+
+            &_completed {
+                width: 50%;
+                height: 100%;
+                background: none;
+                border-radius: 20px;
+                border: none;
+                font-size: 14px;
+                color: $primary;
+                cursor: pointer;
+                outline: none;
+            }
+		}
+
+		&__main {
+            width: 100%;
+            height: 570px;
+            background: $lightgray;
+            border-radius: 0 0 10px 0;
+            margin-top: 24px;
+            
+			&_wrapper {
+                width: 100%;
+                height: 100%;
+                padding: 10px 30px;
+                position: relative;
+			}
+
+			&_category {
+                width: 100%;
+                @include fl-center-sb;
+			}
+
+			&_inner {
+                max-height: 540px;
+                width: 100%;
+                position: absolute;
+                display: flex;
+                flex-wrap: wrap;
+                padding-top: 20px;
+                gap: 10px;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+			}
+
+            &_item {
+                width: 320px;
+                height: 140px;
+                background: $white;
+                border-radius: 10px;
+                @include fl-center-sb;
+                margin-bottom: 10px;
+                cursor: pointer;
+                position: relative;
+            }
+		}
+
+        &__completed {
+
+            &_inner {
+                max-height: 540px;
+                width: 100%;
+                padding-top: 20px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+        }
+
+        &__item {
+
+            &_info {
+                height: 100%;
+                @include fl-start-sb-col;
+                padding: 10px;
+            }
+    
+            &_banner {
+                width: 140px;
+                height: 140px;
+            }
+
+            &_delete {
+                width: 26px;
+                height: 26px;
+                background: $primary;
+                @include fl-center-center;
+                border-radius: 50%;
+                position: absolute;
+                top: -10px;
+                right: -10px;
+            }
+        }
+}
+
+.active__inner {
+    background: $white;
+}
+
+.main {
+
+		&__category {
+
+			&_title {
+			}
+
+			&_block {
+                width: 400px;
+                overflow-x: auto;
+                white-space: nowrap;
+                scrollbar-width: none;
+
+                &::-webkit-scrollbar {
+                    width: 0;
+                }
+			}
+		}
+}
+.category {
+
+		&__block {
+
+			&_button {
+                width: 70px;
+                height: 28px;
+                background: none;
+                border: 1px solid $primary;
+                border-radius: 20px;
+                font-size: 12px;
+                display: inline-block; 
+                margin-right: 10px;
+                color: $primary;
+                cursor: pointer;
+                transition: .4s;
+
+                &:hover {
+                    background: $primary;
+                    color: $white;
+                }
+			}
+		}
+}
+
+.item {
+
+    &__info {
+
+        &_category {
+            width: 50px;
+            height: 20px;
+            background: $lightblue;
+            border-radius: 4px;
+            @include fl-center-center;
+            font-size: 11px;
+            font-weight: 600;
+            color: $primary;
+        }
+
+        &_text {
+            @include fl-start-center-col;
+            gap: 4px;
+        }
+
+        &_completed {
+            width: 132px;
+            height: 30px;
+            background: $lightgray;
+            border-radius: 20px;
+            @include fl-center-center;
+            gap: 8px;
+        }
+    }
+
+    &__banner {
+
+        &_image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+    }
+
+    &__delete {
+
+        &_icon {
+            width: 14px;
+            height: 16px;
+        }
+    }
+}
+.info {
+
+    &__text {
+
+        &_name {
+            font-size: 20px;
+        }
+
+        &_duration {
+            font-size: 13px;
+            color: $text-gray;
+        }
+    }
+
+    &__button {
+        width: 100px;
+        height: 30px;
+        background: $primary;
+        border-radius: 4px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 14px;
+        color: $white;
+    }
+
+    &__completed {
+        
+        &_text {
+            color: $green;
+            font-weight: 500;
+        }
+
+        &_icon {
+
+        }
+    }
+}
+
+.completed__empty_block {
+    width: 100%;
+    height: 454px;
+    @include fl-center-center;
+}
+
+.completed__empty_text {
+    color: $primary;
+    text-shadow: 0 0 40px $primary;
+}
+
+.completed__exercise_wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 10px 30px;
+    position: relative;
+}
+
+@media(max-width: 440px) {
+    .container {
+        width: 100%;
+        margin-top: 80px;
+    }
+
+    .wrapper {
+        // height: 100%;
+    }
+
+    .exercise {
+
+        &__header {
+            @include fl-start-center-col;
+            padding: 0 20px;
+
+            &_info {
+
+            }
+
+            &_title {
+                font-size: 22px;
+            }
+
+            &_text {
+                font-size: 16px;
+            }
+
+            &_inner {
+                margin-top: 20px;
+            }
+        }
+
+        &__main {
+            height: 600px;
+
+            &_wrapper {
+                width: 100%;
+                max-height: 100%;
+                padding: 20px;
+                @include fl-start-center;
+            }
+
+            &_inner {
+                max-height: 560px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding-top: 10px;
+                gap: 10px;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
+        }
+
+        &__completed {
+
+            &_inner {
+                max-height: 540px;
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+                padding-top: 10px;
+                gap: 10px;
+                overflow: scroll;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+        }
+    }
+    
+    .completed {
+
+        &__empty {
+
+            &_block {
+                width: 100%;
+            }
+
+            &_text {
+                width: 86%;
+                text-align: center;
+                font-size: 20px;
+            }
+        }
+
+        &__exercise {
+
+            &_wrapper {
+                width: 100%;
+                max-height: 100%;
+                padding: 20px;
+                @include fl-start-center;
+            }
+        }
+    }
+}
+
+@media (max-width: 340px) {
+    .exercise {
+
+        &__main {
+
+            &_item {
+                width: 90%;
+
+            }
+        }
+    }
+}
+
+@media (max-width: 440px) {
+    .info {
+    
+        &__text {
+    
+            &_name {
+                font-size: 18px;
+            }
+    
+            &_duration {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .info {
+    
+        &__text {
+    
+            &_name {
+                font-size: 16px;
+            }
+    
+            &_duration {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .exercise {
+
+        &__scroll {
+
+            &_button {
+                width: 58px;
+                height: 20px;
+                font-size: 11px;
+            }
+        }
+    }
+}

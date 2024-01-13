@@ -1,0 +1,672 @@
+@import '../../shared/styles/variables';
+@import '../../shared/styles/mixins';
+
+.container {
+    width: 100%;
+    // height: 100%;
+    // position: relative;
+}
+
+.plan {
+    
+    &__wrapper {
+        height: 680px;
+        padding: 20px;
+        background: $lightgray;
+        border-radius: 0 10px 10px 0;
+    }
+
+    &__calendar {
+
+        &_block {
+            @include fl-sb;
+            height: 100%;
+        }
+    }
+}
+
+.calendar {
+
+    &__main {
+
+        &_block {
+            width: 60%;
+            height: 100%;
+        }
+
+        &_day {
+            width: 14.28%;
+            height: 76px;
+            border: 1px solid $lightgray;
+            @include fl-center-center;
+            cursor: pointer;
+            color: $primary;
+
+            &:not(.calendar__prev_day, .calendar__next_day):hover {
+                color: $white;
+                background: $primary;
+            }
+        }
+    }
+
+    &__inner {
+        width: 100%;
+        height: 100%;
+        background: $white;
+        padding: 20px;
+        border-radius: 10px;
+        position: relative;
+        @include fl-center-sb-col;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 12px;
+            height: 97%;
+            border-radius: 0 5px 5px 0;
+            background: #ececec;
+            transform: translateY(-50%);
+        }
+
+        &::before {
+            height: 94%;
+            left: calc(100% + 12px);
+            background: rgb(225, 225, 225);
+        }
+
+        &_header {
+            width: 100%;
+        }
+        
+        &_main {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        &_days {
+            width: 100%;
+            @include fl-center;
+            flex-wrap: wrap;
+            border: 1px solid $lightgray;
+        }
+
+        &_footer {
+            width: 100%;
+            @include fl-center-sb;
+        }
+    }
+    
+    &__header {
+        
+        &_nav {
+            @include fl-center-sb;
+            padding: 0 20px;
+        }
+        
+        &_weekdays {
+            width: 100%;
+            @include fl-center-sb;
+            margin-top: 20px;
+        }
+    }
+
+    &__nav {
+
+        &_previous {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        &_title {
+            font-size: 20px;
+            color: $text-gray;
+        }
+
+        &_next {
+            cursor: pointer;
+            user-select: none;
+        }
+    }
+
+    &__weekdays {
+
+        &_item {
+            width: 14.28%;
+            height: 100%;
+            @include fl-center-center;
+            color: $text-gray;
+        }
+    }
+
+    &__prev {
+
+        &_day {
+            color: $text-gray;
+        }
+    }
+
+    &__next {
+
+        &_day {
+            color: $text-gray;
+        }
+    }
+
+    &__event {
+
+        &_day {
+            position: relative;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 10%;
+                left: 50%;
+                width: 75%;
+                height: 5px;
+                border-radius: 30px;
+                transform: translateX(-50%);
+                background: $primary;
+            }
+        }
+    }
+
+    &__today {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    &__active {
+        background: $primary;
+        color: $white;
+    }
+
+    &__footer {
+
+        &_input {
+            @include fl-center;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid $primary;
+        }
+
+        &_button {
+            padding: 6px 14px;
+            border: 1px solid $primary;
+            border-radius: 6px;
+            background: transparent;
+            cursor: pointer;
+            color: $primary;
+
+            &:hover {
+                background: $primary;
+                color: $white;
+            }
+        }
+    }
+
+    &__input {
+          
+        &_item {
+            width: 100%;
+            height: 30px;
+            outline: none;
+            border: none;
+            border-radius: 6px;
+            padding: 0 20px;
+            color: $primary;
+
+            &::placeholder {
+                color: $primary;
+            }
+        }
+
+        &_button {
+            padding: 6px 10px;
+            border: none;
+            border-left: 1px solid $primary;
+            background: transparent;
+            cursor: pointer;
+            color: $primary;
+
+            &:hover {
+                background: $primary;
+                color: $white;
+            }
+        }
+    }
+}
+
+.calendar__main_day.calendar__event_day:hover::after {
+    background: $white;
+}
+
+.events {
+
+    &__main {
+
+        &_block {
+            width: 36%;
+            position: relative;
+        }
+    }
+}
+.event {
+
+    &__header {
+
+        &_block {
+            width: 100%;
+            @include fl-center-sb;
+            padding: 40px;
+        }
+
+        &_weekname {
+            font-size: 30px;
+            font-weight: 600;
+            color: $primary;
+        }
+
+        &_date {
+            color: $text-gray;
+        }
+    }
+
+    &__main {
+
+        &_block {
+            width: 100%;
+            height: 440px;
+            overflow: scroll;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+
+    &__block {
+
+        &_item {
+            width: 100%;
+            padding: 12px 30px;
+            color: $white;
+            position: relative;
+            background: linear-gradient(90deg, #0033ff0c, transparent);
+            cursor: pointer;
+
+            &:nth-child(even) {
+                background: transparent;
+            }
+
+            &:hover {
+                background: linear-gradient(90deg, #0033ff44, transparent);
+            }
+
+            &::after {
+                content: "✓";
+                position: absolute;
+                top: 50%;
+                right: 0;
+                font-size: 3rem;
+                line-height: 1;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                opacity: 0.3;
+                color: $primary;
+                transform: translateY(-50%);
+            }
+
+            &:hover::after {
+                display: flex;
+            }
+        }
+
+        &_empty {
+            width: 100%;
+            @include fl-center-center;
+            margin-top: 200px;
+        }
+    }
+
+    &__empty {
+
+        &_text {
+            color: $primary;
+        }
+    }
+
+    &__item {
+
+        &_title {
+            @include fl-center;
+            gap: 20px;
+        }
+
+        &_time {
+            margin-top: 5px;
+            margin-left: 30px;
+            font-size: 14px;
+            color: $text-gray;
+        }
+    }
+
+    &__add {
+
+        &_wrapper {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            border-radius: 5px;
+            background-color: #fff;
+            transform: translateX(-50%);
+            transition: max-height 0.5s ease;
+        }
+
+        &_header {
+            width: 100%;
+            @include fl-center-sb;
+            padding: 20px;
+        }
+
+        &_main {
+            width: 100%;
+            @include fl-start-sb-col;
+            gap: 20px;
+            padding: 15px 20px;
+        }
+
+        &_block {
+            width: 100%;
+        }
+
+        &_footer {
+            width: 100%;
+            @include fl-center-center;
+            padding: 20px;
+        }
+
+        &_circle {
+        }
+    }
+
+    &__footer {
+
+        &_block {
+            width: 100%;
+        }
+    }
+}
+
+.item {
+
+    &__title {
+
+        &_circle {
+            width: 8px;
+            height:  8px;
+            border-radius: 50%;
+            background: $primary;
+        }
+
+        &_name {
+            color: $primary;
+        }
+    }
+
+    &__time {
+
+        &_text {
+        }
+    }
+}
+
+.add {
+
+    &__header {
+
+        &_title {
+            font-size: 18px;
+            font-weight: 500;
+
+        }
+
+        &_close {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__block {
+
+        &_input {
+            width: 100%;
+            height: 30px;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid #f5f5f5;
+            padding: 0 10px;
+            font-size: 1rem;
+            font-weight: 400;
+            color: $primary;
+
+            &::placeholder {
+                color: #a5a5a5;
+            }
+
+            &:focus {
+                border-bottom: 1px solid $primary;
+            }
+
+            &:focus::placeholder {
+                color: $primary;
+            }
+        }
+    }
+
+    &__footer {
+
+        &_button {
+            height: 40px;
+            font-size: 16px;
+            font-weight: 500;
+            outline: none;
+            border: none;
+            color: $white;
+            background-color: $primary;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid $primary;
+
+            &:hover {
+                background-color: transparent;
+                color: $primary;
+            }
+        }
+    }
+
+    &__circle {
+
+        &_button {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+            @include fl-center-center;
+            font-size: 30px;
+            color: $primary;
+            border: 2px solid $primary;
+            opacity: 0.5;
+            border-radius: 50%;
+            background-color: transparent;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.event__add_wrapper.active {
+    max-height: 300px;
+}
+
+@media(max-width: 440px) {
+    .container {
+        width: 100%;
+        // min-height: 100%;
+        // padding: 0;
+        // background: none;
+        // border-radius: 0;
+    }
+    
+    .plan {
+
+        &__wrapper {
+            height: 100%;
+            padding: 0 20px;
+            // margin-top: 120px;
+            background: $lightgray;
+        }
+    
+        &__calendar {
+            // padding: 20px;
+    
+            &_block {
+                // height: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+            }
+        }
+    }
+
+    .calendar {
+
+        &__main {
+
+            &_block {
+                // margin-top: 80px;
+                width: 100%;
+                margin-top: 80px;
+            }
+        }
+
+        &__nav {
+
+            &_title {
+                font-size: 20px;
+            }
+        }
+
+        &__inner {
+            width: 100%;
+            height: 100%;
+            background: $white;
+            padding: 10px;
+            border-radius: 10px;
+            position: none;
+            @include fl-center-sb-col;
+    
+            &::before,
+            &::after {
+                content: none;
+            }
+
+            &_footer {
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+
+        &__weekdays {
+
+            &_item {
+                font-size: 14px;
+            }
+        }
+
+        &__footer {
+
+            &_input {
+                width: 70%;
+            }
+
+            &_button {
+                width: 26%;
+            }
+        }
+    }
+
+    .events {
+
+        &__main {
+
+            &_block {
+                width: 100%;
+                // height: 400px;
+            }
+        }
+    }
+
+    .event {
+
+        &__header {
+
+            &_block {
+                padding: 40px 0;
+            }
+        }
+
+        &__main {
+
+            &_block {
+            }
+        }
+
+        &__footer {
+
+            &_block {
+                height: 100px;
+            }
+        }
+    }
+
+    .add {
+
+        &__circle {
+
+            &_button {
+                position: absolute;
+                bottom: 20px;
+                right: 0;
+                width: 50px;
+                height: 50px;
+                @include fl-center-center;
+                font-size: 30px;
+                color: $primary;
+                border: 2px solid $primary;
+                opacity: 1;
+                border-radius: 50%;
+                background-color: transparent;
+                cursor: pointer;
+    
+                // &:hover {
+                //     opacity: 1;
+                // }
+            }
+        }
+    }
+}

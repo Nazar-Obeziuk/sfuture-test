@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="admin__wrapper">
+        @if (isAdminLogined) {
+            <div class="admin__wrapper_items">
+                <button class="admin__item_btn" routerLink="exercise" routerLinkActive="admin__item_active" type="button">Exercise</button>
+                <button class="admin__item_btn" routerLink="category" routerLinkActive="admin__item_active" type="button">Category</button>
+                <button class="admin__item_btn" routerLink="coach" routerLinkActive="admin__item_active" type="button">Coach</button>
+                <button (click)="logout()" class="admin__exit" type="button">Sign out</button>
+            </div>
+            <div class="admin__wrapper_content">
+                <router-outlet></router-outlet>
+            </div>
+        } @else {
+            <div class="auth__block">
+                <form [formGroup]="authForm" class="auth__form">
+                    <div class="auth__content_wrapper">
+                        <div class="auth__text_wrapper">
+                            <h2 class="auth__text">Sign in to SFuture</h2>
+                        </div>
+                        <div class="auth__email_wrapper">
+                            <input formControlName="email" name="email" type="email" class="auth__email modal__input"
+                                placeholder="Email address">
+                        </div>
+                        <div class="auth__password_wrapper">
+                            <input formControlName="password" name="password" type="password"
+                                class="auth__password modal__input" placeholder="Password">
+                        </div>
+                        <div class="auth__button_wrapper">
+                            <button (click)="signInUser()" class="auth__button" type="submit">Sign in</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="wrapper__toggle">
+            <button (click)="toggleExerciseFormAndTable()" class="wrapper__add_exercise">Add Exercise</button>
+        </div>
+        @if (isFormOpen) {
+            <div class="form__block">
+                <form class="form" [formGroup]="exerciseForm" (ngSubmit)="addExercise()">
+                    <div class="form__exercise_category">
+                        <select formControlName="category" class="exercise__select exercise__input">
+                            @for (category of adminCategories; track $index) {
+                                <option [ngValue]="category" class="exercise__select_category">{{ category.name }}</option>
+                            }
+                        </select>
+                        <div class="form__exercise_header">
+                            <input formControlName="name" type="text" class="form__exercise_name exercise__input" id="name" placeholder="*Name">
+                            <input formControlName="path" type="text" class="form__exercise_path exercise__input" id="path" placeholder="*Path">
+                        </div>
+                        <div class="form__exercise_main">
+                            <input formControlName="description" class="form__exercise_description exercise__input" type="text" placeholder="*Description">
+                        </div>
+                        <div class="form__exercise_footer">
+                            <input formControlName="duration" class="form__exercise_duration exercise__input" type="text" placeholder="*Duration">
+                            <input formControlName="count" class="form__exercise_count exercise__input" type="number" placeholder="*Count">
+                        </div>
+                        <div class="form__image_wrapper">
+                            @if (!isUploadedImage) {
+                                <div class="form__exercise_upload">
+                                    <input type="file" class="exercise__upload_file" id="formFile" (change)="uploadImage($event)">
+                                </div>
+                            }
+                            @if (isUploadedImage) {
+                                <div class="form__exercise_load">
+                                    <img class="exercise__load_img" [src]="valueByControl('imagePath')" alt="">
+                                    <button type="button" class="exercise__load_button" (click)="deleteImage()">Delete</button>
+                                </div>
+                            }
+                            @if (!isUploadedGifImage) {
+                                <div class="form__exercise_upload">
+                                    <input type="file" class="exercise__upload_file" id="formFile" (change)="uploadGifImage($event)">
+                                </div>
+                            }
+                            @if (isUploadedGifImage) {
+                                <div class="form__exercise_load">
+                                    <img class="exercise__load_img" [src]="valueByControl('gifImagePath')" alt="">
+                                    <button type="button" class="exercise__load_button" (click)="deleteGifImage()">Delete</button>
+                                </div>
+                            }
+                        </div>
+                        <button [disabled]="exerciseForm.invalid" type="submit" class="form__exercise_button">Add</button>
+                    </div>
+                </form>
+            </div>
+        }
+
+        @if (!isFormOpen) {
+            <div class="exercise__block">
+                <table class="exercise__table">
+                    <tr class="table__header">
+                        <th class="header__sharp table__item">№</th>
+                        <th class="header__category table__item">Category</th>
+                        <th class="header__name table__item">Name</th>
+                        <th class="header__way table__item">Path</th>
+                        <th class="header__description table__item">Description</th>
+                        <th class="header__duration table__item">Duration</th>
+                        <th class="header__count table__item">Count</th>
+                        <th class="header__image table__item">Image</th>
+                        <th class="header__image table__item">GifImage</th>
+                        <th class="header__actions table__item">Actions</th>
+                    </tr>
+                    @for (exercise of adminExercises; track $index) {
+                        <tr class="table__main">
+                            <td class="main__sharp table__item">
+                                № {{ $index + 1 }}
+                            </td>
+                            <td class="main__category table__item">{{ exercise.category.name }}</td>
+                            <td class="main__name table__item">{{ exercise.name }}</td>
+                            <td class="main__path table__item">{{ exercise.path }}</td>
+                            <td class="main__desc table__item">
+                                {{ exercise.description | slice:0:20 }}
+                            </td>
+                            <td class="main__duration table__item">{{ exercise.duration }}</td>
+                            <td class="main__count table__item">{{ exercise.count }}</td>
+                            <td class="main__image table__item">
+                                <img class="main__image_item" [src]="exercise.imagePath" alt="">
+                            </td>
+                            <td class="main__image table__item">
+                                <img class="main__image_item" [src]="exercise.gifImagePath" alt="">
+                            </td>
+                            <td class="main__actions table__item">
+                                <button (click)="editExercise(exercise)" class="actions__edit actions__btn" type="button">Edit</button>
+                                <button [disabled]="editStatus" (click)="deleteExercise(exercise)" class="actions__delete actions__btn" type="button">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+    </div>
+</div>
